@@ -1,9 +1,9 @@
 FROM openjdk:8-jdk
 MAINTAINER Javier Boo <javier.boo@aiwin.es>
 
-ENV ANDROID_TARGET_SDK="23" \
+ENV ANDROID_TARGET_SDK="25" \
     ANDROID_BUILD_TOOLS="25.0.1" \
-    ANDROID_SDK_TOOLS="25.2.4"
+    ANDROID_SDK_TOOLS="25.3.0"
 
 RUN apt-get --quiet update --yes
 RUN apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1

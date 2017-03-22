@@ -21,11 +21,14 @@ RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all -
     echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-google_play_services && \
     echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-m2repository
 
+RUN echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter sys-img-x86-google_apis-${ANDROID_TARGET_SDK} && \
+    echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter sys-img-armeabi-v7a-google_apis-${ANDROID_TARGET_SDK} && \
+    echo no | android-sdk-linux/tools/android create avd -n test-x86 -t android-${ANDROID_TARGET_SDK} --abi google_apis/x86 && \
+    echo no | android-sdk-linux/tools/android create avd -n test-arm -t android-${ANDROID_TARGET_SDK} --abi google_apis/armeabi-v7a
+
 RUN mkdir scripts && \
     wget --quiet --output-document=scripts/android-wait-for-emulator https://raw.githubusercontent.com/travis-ci/travis-cookbooks/0f497eb71291b52a703143c5cd63a217c8766dc9/community-cookbooks/android-sdk/files/default/android-wait-for-emulator && \
- 	chmod +x scripts/android-wait-for-emulator && \
-    echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter sys-img-x86-google_apis-${ANDROID_TARGET_SDK} && \
-    echo no | android-sdk-linux/tools/android create avd -n test -t android-${ANDROID_TARGET_SDK} --abi google_apis/x86 
+    chmod +x scripts/android-wait-for-emulator
 
 ENV ANDROID_HOME $PWD/android-sdk-linux
-ENV PATH "$PATH:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:$PWD/scripts"
+ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:$PWD/scripts:$PATH

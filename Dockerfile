@@ -28,4 +28,4 @@ RUN mkdir scripts && \
     echo no | android-sdk-linux/tools/android create avd -n test -t android-${ANDROID_TARGET_SDK} --abi google_apis/x86 
 
 ENV ANDROID_HOME $PWD/android-sdk-linux
-ENV PATH "$PATH:${ANDROID_HOME}/tools:$PWD/scripts"
+ENV PATH "$PATH:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:$PWD/scripts"

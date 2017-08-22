@@ -32,4 +32,4 @@ RUN mkdir -p $HOME/scripts/android && \
     chmod +x $HOME/scripts/android/android-wait-for-emulator
 
 ENV ANDROID_HOME $PWD/android-sdk-linux
-ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:$HOME/scripts/android:$PATH
+ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:$PATH

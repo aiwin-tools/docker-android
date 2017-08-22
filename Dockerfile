@@ -15,28 +15,29 @@ RUN wget --quiet --output-document=android-sdk.zip https://dl.google.com/android
     rm -v android-sdk.zip
 
 ENV ANDROID_SDK_HOME $PWD/android-sdk-linux
+ENV ANDROID_HOME $ANDROID_SDK_HOME
 
-RUN android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_TARGET_SDK}" && \
-    android-sdk-linux/tools/bin/sdkmanager "platform-tools" && \
-    android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" && \
-    yes | android-sdk-linux/tools/bin/sdkmanager --licenses && \
-    android-sdk-linux/tools/bin/sdkmanager --update
+RUN $ANDROID_SDK_HOME/tools/bin/sdkmanager "platforms;android-${ANDROID_TARGET_SDK}" && \
+    $ANDROID_SDK_HOME/tools/bin/sdkmanager "platform-tools" && \
+    $ANDROID_SDK_HOME/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" && \
+    yes | $ANDROID_SDK_HOME/tools/bin/sdkmanager --licenses && \
+    $ANDROID_SDK_HOME/tools/bin/sdkmanager --update
 
-RUN android-sdk-linux/tools/bin/sdkmanager "extras;android;m2repository" && \
-    android-sdk-linux/tools/bin/sdkmanager "extras;google;google_play_services" && \
-    android-sdk-linux/tools/bin/sdkmanager "extras;google;m2repository" && \
-    yes | android-sdk-linux/tools/bin/sdkmanager --licenses && \
-    android-sdk-linux/tools/bin/sdkmanager --update
+RUN $ANDROID_SDK_HOME/tools/bin/sdkmanager "extras;android;m2repository" && \
+    $ANDROID_SDK_HOME/tools/bin/sdkmanager "extras;google;google_play_services" && \
+    $ANDROID_SDK_HOME/tools/bin/sdkmanager "extras;google;m2repository" && \
+    yes | $ANDROID_SDK_HOME/tools/bin/sdkmanager --licenses && \
+    $ANDROID_SDK_HOME/tools/bin/sdkmanager --update
 
-#RUN android-sdk-linux/tools/bin/sdkmanager "system-images;android-${ANDROID_TARGET_SDK};google_apis;x86" && \
-#    yes | android-sdk-linux/tools/bin/sdkmanager --licenses && \
-#    android-sdk-linux/tools/bin/sdkmanager --update && \
-#    echo no | android-sdk-linux/tools/bin/avdmanager create avd -f -n test-x86 -k "system-images;android-${ANDROID_TARGET_SDK};google_apis;x86" --abi google_apis/x86
+#RUN $ANDROID_SDK_HOME/tools/bin/sdkmanager "system-images;android-${ANDROID_TARGET_SDK};google_apis;x86" && \
+#    yes | $ANDROID_SDK_HOME/tools/bin/sdkmanager --licenses && \
+#    $ANDROID_SDK_HOME/tools/bin/sdkmanager --update && \
+#    echo no | $ANDROID_SDK_HOME/tools/bin/avdmanager create avd -f -n test-x86 -k "system-images;android-${ANDROID_TARGET_SDK};google_apis;x86" --abi google_apis/x86
 
-RUN android-sdk-linux/tools/bin/sdkmanager "system-images;android-${ANDROID_TARGET_SDK};google_apis;armeabi-v7a" && \
-    yes | android-sdk-linux/tools/bin/sdkmanager --licenses && \
-    android-sdk-linux/tools/bin/sdkmanager --update && \
-    echo no | android-sdk-linux/tools/bin/avdmanager create avd -f -n test-arm -k "system-images;android-${ANDROID_TARGET_SDK};google_apis;armeabi-v7a" --abi google_apis/armeabi-v7a
+RUN $ANDROID_SDK_HOME/tools/bin/sdkmanager "system-images;android-${ANDROID_TARGET_SDK};google_apis;armeabi-v7a" && \
+    yes | $ANDROID_SDK_HOME/tools/bin/sdkmanager --licenses && \
+    $ANDROID_SDK_HOME/tools/bin/sdkmanager --update && \
+    echo no | $ANDROID_SDK_HOME/tools/bin/avdmanager create avd -f -n test-arm -k "system-images;android-${ANDROID_TARGET_SDK};google_apis;armeabi-v7a" --abi google_apis/armeabi-v7a
 
 # https://stackoverflow.com/a/44386974
 RUN mkdir -p $ANDROID_SDK_HOME/platforms && \

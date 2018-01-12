@@ -31,10 +31,6 @@ RUN $ANDROID_SDK_HOME/tools/bin/sdkmanager "extras;android;m2repository" && \
     yes | $ANDROID_SDK_HOME/tools/bin/sdkmanager --licenses && \
     $ANDROID_SDK_HOME/tools/bin/sdkmanager --update
 
-# https://stackoverflow.com/a/44386974
-RUN mkdir -p $ANDROID_SDK_HOME/platforms && \
-    mkdir -p $HOME/scripts/android && \
-    wget --quiet --output-document=$HOME/scripts/android/android-wait-for-emulator https://raw.githubusercontent.com/travis-ci/travis-cookbooks/0f497eb71291b52a703143c5cd63a217c8766dc9/community-cookbooks/android-sdk/files/default/android-wait-for-emulator && \
-    chmod +x $HOME/scripts/android/android-wait-for-emulator
+RUN mkdir -p $ANDROID_SDK_HOME/platforms
 
 ENV PATH ${ANDROID_SDK_HOME}/tools:${ANDROID_SDK_HOME}/platform-tools:$PATH

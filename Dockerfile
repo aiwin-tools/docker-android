@@ -32,3 +32,5 @@ RUN $ANDROID_SDK_HOME/tools/bin/sdkmanager "extras;android;m2repository" && \
 RUN mkdir -p $ANDROID_SDK_HOME/platforms
 
 ENV PATH ${ANDROID_SDK_HOME}/tools:${ANDROID_SDK_HOME}/platform-tools:$PATH
+
+COPY jacoco.gradle $GRADLE_HOME

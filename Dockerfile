@@ -2,9 +2,9 @@ FROM aiwin/gradle-base
 
 LABEL maintainer="javier.boo@aiwin.es"
 
-ENV ANDROID_TARGET_SDK="25" \
-    ANDROID_BUILD_TOOLS="26.0.1" \
-    ANDROID_SDK_TOOLS="3859397"
+ENV ANDROID_TARGET_SDK="27" \
+    ANDROID_BUILD_TOOLS="27.0.3" \
+    ANDROID_SDK_TOOLS="4333796"
 
 RUN apt-get --quiet update --yes && \
     apt-get --quiet install --yes --no-install-recommends wget tar unzip lib32stdc++6 lib32z1 libqt5widgets5 libqt5svg5 file ruby-full build-essential && \

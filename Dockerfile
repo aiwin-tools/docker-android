@@ -2,7 +2,7 @@ FROM aiwin/gradle-base
 
 LABEL maintainer="javier.boo@aiwin.es"
 
-ENV ANDROID_TARGET_SDK="25" \
+ENV ANDROID_TARGET_SDK="26" \
     ANDROID_BUILD_TOOLS="26.0.1" \
     ANDROID_SDK_TOOLS="3859397"
 

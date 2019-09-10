@@ -2,8 +2,8 @@ FROM aiwin/gradle-base
 
 LABEL maintainer="javier.boo@aiwin.es"
 
-ENV ANDROID_TARGET_SDK="26" \
-    ANDROID_BUILD_TOOLS="26.1.1" \
+ENV ANDROID_TARGET_SDK="28" \
+    ANDROID_BUILD_TOOLS="28.0.3" \
     ANDROID_SDK_TOOLS="4333796"
 
 RUN apt-get --quiet update --yes && \

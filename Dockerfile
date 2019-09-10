@@ -6,9 +6,11 @@ ENV ANDROID_TARGET_SDK="26" \
     ANDROID_BUILD_TOOLS="26.1.1" \
     ANDROID_SDK_TOOLS="4333796"
 
-RUN apt-get --quiet update --yes
-RUN apt-get --quiet install --yes --no-install-recommends wget tar unzip lib32stdc++6 lib32z1 libqt5widgets5 libqt5svg5 file && \
+RUN apt-get --quiet update --yes && \
+    apt-get --quiet install --yes --no-install-recommends wget tar unzip lib32stdc++6 lib32z1 libqt5widgets5 libqt5svg5 file ruby-full build-essential && \
+    apt-get --quiet clean --yes && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN gem install fastlane -NV
 
 RUN wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip && \
     unzip android-sdk.zip -d android-sdk-linux && \

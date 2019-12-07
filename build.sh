@@ -2,7 +2,7 @@
 
 [[ -z "$REPOSITORY" ]] && REPOSITORY="android-base"
 [[ -z "$REGISTRY" ]] && REGISTRY="aiwin"
-[[ -z "$TAG" ]] && TAG="latest"
+[[ -z "$TAG" ]] && TAG="migo-lts"
 
 # Build docker image
 docker build -t $REGISTRY/$REPOSITORY:$TAG .
